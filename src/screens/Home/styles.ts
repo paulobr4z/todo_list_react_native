@@ -5,4 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#1A1A1A',
   },
+  wrapper: {
+    paddingHorizontal: 24,
+  },
 })
