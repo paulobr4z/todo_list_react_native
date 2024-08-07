@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 8,
     gap: 12,
     borderColor: colors.gray_400,
     borderWidth: 1,
@@ -18,10 +18,15 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     flex: 1,
   },
-  text: {},
+  text: {
+    color: colors.gray_100,
+  },
   buttonText: {
     color: colors.white,
     fontSize: 24,
   },
-  button: {},
+  strikethrough: {
+    textDecorationLine: 'line-through',
+    color: colors.gray_300,
+  },
 })

@@ -1,20 +1,28 @@
-import { useState } from 'react'
 import { Image, Text, TouchableOpacity, View } from 'react-native'
 import { CheckBox } from '@ui-kitten/components'
 import { styles } from './styles'
+import { ITask } from '../../types'
 
-export function Task() {
-  const [checked, setChecked] = useState(false)
+interface ITaskProps {
+  task: ITask
+  setDone: (taskId: string) => void
+  deleteTask: (taskId: string) => void
+}
 
+export function Task({ task, setDone, deleteTask }: ITaskProps) {
   return (
     <View style={styles.container}>
-      <CheckBox checked={checked} onChange={() => setChecked(!checked)} />
+      <CheckBox checked={task.done} onChange={() => setDone(task.id)} />
       <View style={styles.textContainer}>
-        <Text style={styles.text} numberOfLines={3} ellipsizeMode="tail">
-          Integer urna interdum massa libero auctor neque turpis turpis semper.
+        <Text
+          style={[styles.text, task.done ? styles.strikethrough : null]}
+          numberOfLines={3}
+          ellipsizeMode="tail"
+        >
+          {task.content}
         </Text>
       </View>
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
+      <TouchableOpacity onPress={() => deleteTask(task.id)}>
         <Image source={require('../../assets/trash.png')} alt="remove" />
       </TouchableOpacity>
     </View>

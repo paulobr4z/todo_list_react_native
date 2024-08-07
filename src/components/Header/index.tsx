@@ -2,7 +2,19 @@ import { View, Image, TextInput, TouchableOpacity, Text } from 'react-native'
 import { styles } from './styles'
 import { colors } from '../../constants/colors'
 
-export function Header() {
+interface IHeader {
+  onAddTask: () => void
+  onChangeText: (inputText: string) => void
+  clearInputText: () => void
+  inputText: string
+}
+
+export function Header({
+  onAddTask,
+  onChangeText,
+  clearInputText,
+  inputText,
+}: IHeader) {
   return (
     <View style={styles.container}>
       <Image
@@ -15,11 +27,13 @@ export function Header() {
           style={styles.input}
           placeholder="Adicione uma nova tarefa"
           placeholderTextColor={colors.gray_300}
-          // onChangeText={setParticipantName}
-          // value={participantName}
+          onChangeText={onChangeText}
+          onBlur={clearInputText}
+          value={inputText}
+          onSubmitEditing={onAddTask}
         />
 
-        <TouchableOpacity style={styles.button} onPress={() => {}}>
+        <TouchableOpacity style={styles.button} onPress={onAddTask}>
           <Text style={styles.buttonText}>+</Text>
         </TouchableOpacity>
       </View>
